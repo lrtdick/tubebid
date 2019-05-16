@@ -1,0 +1,286 @@
+{extend name="public/base" /}
+
+{block name="content"}
+<style>
+    @media (min-width: 1380px) {
+        .cao{
+            width: 14%;
+        }
+    }
+    @media (max-width: 1380px) {
+        .cao{
+            width: 7%;
+        }
+    }
+    .btn + .btn {
+        margin-left: 0px;
+    }
+</style>
+<!--页面路径 和 页面标题-->
+<div class="page-title">
+
+    <div class="title-env">
+        <h1 class="title">广告列表</h1>
+        <p class="description">所有广告</p>
+    </div>
+
+    <div class="breadcrumb-env">
+
+        <ol class="breadcrumb bc-1">
+            <li>
+                <a href="/admin"><i class="fa-home"></i>Home</a>
+            </li>
+            <li>
+                <a href="/admin/advertising/index">广告管理</a>
+            </li>
+            <li class="active">
+                <strong>广告列表</strong>
+            </li>
+        </ol>
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">广告列表</font></font></h3>
+                <div class="panel-options">
+
+
+                    <button class="btn btn-icon btn-danger pull-right" id="deleted_all" style="margin-left: 7px;">
+                        <i class="fa-trash"></i> 批量删除
+                    </button>
+
+                    <a class="btn btn-icon btn-info pull-right" href="/admin/advertising/add" style="color: white">
+                        <i class="fa-plus"></i> 添加广告
+                    </a>
+
+                    <button class="btn btn-icon btn-success pull-right" data-toggle="modal" data-target="#search-model">
+                        <i class="fa-search"></i> 搜索
+                    </button>
+                </div>
+            </div>
+
+            <div class="panel-body panel-border">
+
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="table col-sm-12" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th> <input id="CheckAll" name='CheckAll' type='checkbox'></th>
+                                <th>封面</th>
+                                <th style="width: 30%">标题</th>
+                                <th style="width: 17%">信息</th>
+                                <th style="width: 15%">状态</th>
+                                <th class="cao">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {foreach $lists as $key => $list}
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="ids[]" value="{$list.id}" style="margin-right: 5px;">
+                                </td>
+                                <td>{if ($list.poster)}
+                                    <img src="{$list.poster}" width="120px;">
+                                    {else}
+                                    无图广告
+                                    {/if}
+                                </td>
+                                <td>
+                                    {$list.name}
+                                </td>
+
+                                <td>
+                                    <p class="text-left">发布时间：{$list.create_time}</p>
+                                </td>
+
+                                <td>
+                                    <p class="text-left">置顶：
+                                        <input type="checkbox" onclick="change_status({$list.id},'advertising','is_top')" {if condition="$list.is_top == 2"}checked=""{/if}  class="iswitch iswitch-danger">
+                                    </p>
+                                    <p class="text-left">发布：
+                                        <input type="checkbox" onclick="change_status({$list.id},'advertising','status')" {if condition="$list.status == 1"}checked=""{/if}  class="iswitch iswitch-info">
+                                    </p>
+                                </td>
+                                <td>
+                                    <a class="btn btn-success" href="/admin/advertising/edit/id/{$list.id}">
+                                        <i class="fa-edit"></i>
+                                    </a>
+
+                                    <button class="btn btn-red" onclick="deleted({$list.id},'advertising')">
+                                        <i class="fa-trash"></i>
+                                    </button>
+
+                                </td>
+                            </tr>
+                            {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-md-6 control-label">共 {$total} 条记录</label>
+                    <div class="col-md-6 text-right">
+                        <nav aria-label="Page navigation">
+                            {$page}
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+{/block}
+
+{block name="modal"}
+
+<!--搜索模态框-->
+<div class="modal fade" id="search-model" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <form method="get" class="form-horizontal" action="/admin/advertising/index">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">数据搜索</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">标题</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="name" class="form-control" size="25" value="{$Think.get.name}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">标签</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="tag" class="form-control" size="25" value="{$Think.get.tag}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">状态</label>
+                            <div class="col-sm-6">
+                                <select name="status" class="form-control">
+                                    <option value="0"></option>
+                                    <option value="1" {if condition="$Think.get.status == 1"}selected{/if}>发布</option>
+                                    <option value="2" {if condition="$Think.get.status == 2"}selected{/if}>隐藏</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">是否免费</label>
+                            <div class="col-sm-6">
+                                <label class="radio-inline"><input type="radio" name="is_free" {if condition="$Think.get.is_free == 1"}checked{/if} value="1" >免费</label>
+                                <label class="radio-inline"><input type="radio" name="is_free" {if condition="$Think.get.is_free == 2"}checked{/if} value="2">否</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-info" value="确定搜索">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{/block}
+
+{block name="js"}
+
+<script>
+    //更改状态
+    function change_status(id,type,field) {
+        $.ajax({
+            url:'/admin/video/changeStatus',
+            method: 'POST',
+            dataType: 'json',
+            data:{
+                id:id,
+                type:type,
+                field:field
+            },
+            success: function(res)
+            {
+                if(field == 'is_top') {
+                    success('等待置顶数据刷新');
+                    setTimeout("location.reload()",1000);
+                }
+                if(res.code != 1) {
+                    error(res.message);
+                }
+            }
+        })
+    };
+
+    //删除视频
+    function deleted(id,type) {
+        if(confirm("是否确认删除")){
+            $.ajax({
+                url:'/admin/video/deleted',
+                method: 'POST',
+                dataType: 'json',
+                data:{
+                    id:id,
+                    type:type
+                },
+                success: function(res)
+                {
+                    if(res.code == 1) {
+                        success(res.message);
+                        setTimeout("location.reload()",1000);
+                    }else{
+                        error(res.mssage);
+                    }
+                }
+            })
+        }
+    };
+
+    //批量删除
+    $("#deleted_all").click(function(){
+        if(confirm('确定要删除所选吗?')){
+            var checks = $("input[name='ids[]']:checked");
+            if(checks.length == 0){ alert('未选中任何项！');return false;}
+            //将获取的值存入数组
+            var checkData = new Array();
+            checks.each(function(){
+                checkData.push($(this).val());
+            });
+            $.ajax({
+                url:'/admin/video/deleted',
+                method: 'POST',
+                dataType: 'json',
+                data:{
+                    ids:checkData.toString(),
+                    type:'advertising'
+                },
+                success: function(res)
+                {
+                    if(res.code == 1) {
+                        success(res.message);
+                        setTimeout("location.reload()",1000);
+                    }else{
+                        error(res.message);
+                    }
+                }
+            });
+        }
+    });
+</script>
+{/block}

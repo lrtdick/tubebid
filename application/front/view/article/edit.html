@@ -1,0 +1,377 @@
+{extend name="public/base" /}
+
+{block name="content"}
+<style>
+    .img-responsive [data-ratio="16:9"]{
+        height: 7rem;
+    }
+    .test{
+        border-radius: 0%;
+        width: 100%;
+        padding-bottom: 6%;
+        line-height:9vw;
+    }
+</style>
+
+<!--页面路径 和 页面标题-->
+<div class="page-title">
+
+    <div class="title-env">
+        <h1 class="title">视频管理</h1>
+        <p class="description">图文信息</p>
+    </div>
+
+    <div class="breadcrumb-env">
+
+        <ol class="breadcrumb bc-1">
+            <li>
+                <a href="/admin"><i class="fa-home"></i>Home</a>
+            </li>
+            <li>
+                <a href="/admin/video/topic">视频管理</a>
+            </li>
+            <li class="active">
+                <strong>图文信息</strong>
+            </li>
+        </ol>
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">编辑图文</font></font></h3>
+            </div>
+
+            <div class="panel-body">
+                <form id="edit-form" method="post" class="form-horizontal" action="/admin/article/editPost" enctype="multipart/form-data">
+                    <input type="hidden" name="id" value="{$info.id}">
+                    <input type="hidden" name="poster" id="poster_url" value="{$info.poster}">
+                    <div class="form-group">
+                        <input type="button" class="btn btn-info btn-single pull-right edit-button" value="Save changes">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">文件上传</label>
+                        <div class="col-sm-3">
+                            <div id="advancedDropzone_poster" class="droppable-area test">
+                                点击上传封面
+                            </div>
+                        </div>
+                            <label class="col-sm-1 control-label">文件预览</label>
+                            <div class="col-sm-3">
+                                <div class="image-div">
+                                    <img src="{$info.poster}" id="show_poster_url" class="test"/>
+                                </div>
+                            </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">编辑内容</label>
+                        <div class="col-sm-6">
+                            <script id="container" name="content" type="text/plain" class="col-sm-12">
+                            {$info.url}
+                            </script>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">标题</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="name" value="{$info.name}">
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                    <label class="col-sm-2 control-label">标签</label>
+                    <div class="col-sm-6">
+                        <select class="form-control" id="s2example-4" name="tag[]" multiple>
+                            <option></option>
+                            <optgroup label="标签列表">
+                                {foreach $tags as $tag}
+                                <option value="{$tag.id}" {if ( in_array($tag.id,json_decode($info.tag_list)))}selected{/if}>{$tag.name}</option>
+                                {/foreach}
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">关键字列表</label>
+                        <div class="col-sm-6">
+                            <select class="form-control" id="s2example-3" name="keywords_ids[]" multiple>
+                                <optgroup label="关键字列表">
+                                    {foreach $keywords_list as $keywords}
+                                    <option value="{$keywords.id}" {if ( in_array($keywords.id,json_decode($info.keywords_list)))}selected{/if}>{$keywords.name}</option>
+                                    {/foreach}
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">所属作者</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="s2example-2" name="channel_id">
+                                <option></option>
+                                <optgroup label="作者列表">
+                                    {foreach $channels as $channel}
+                                    <option value="{$channel.id}" {if condition="$info.channel_id == $channel.id"}selected{/if}>{$channel.name}</option>
+                                    {/foreach}
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">所属控件</label>
+                        <div class="col-sm-4">
+                            <select class="form-control" id="s2example-1" name="control_id">
+                                <option></option>
+                                <optgroup label="控件列表">
+                                    {foreach $control_list as $control}
+                                    <option value="{$control.id}" {if condition="$info.control_id == $control.id"}selected{/if}>{$control.control_name}</option>
+                                    {/foreach}
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">描述</label>
+                        <div class="col-sm-6">
+                            <textarea class="form-control" rows="10" name="desc">{$info.desc}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">播放次数</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="played_count" value="{$info.played_count}">
+                        </div>
+                    </div>
+
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-2 control-label">是否免费</label>-->
+                        <!--<div class="col-sm-6">-->
+                            <!--<label class="radio-inline"><input type="radio" name="is_free" {if condition="$info.is_free == 1"}checked{/if} value="1" >免费</label>-->
+                            <!--<label class="radio-inline"><input type="radio" name="is_free" {if condition="$info.is_free == 2"}checked{/if} value="2">否</label>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">排列序号</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="sort_by" value="{$info.sort_by}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">是否置顶</label>
+                        <div class="col-sm-6">
+                            <label class="radio-inline"><input type="radio" name="is_top" value="0" {if condition="$info.is_top == 0"}checked{/if}>否</label>
+                            <label class="radio-inline"><input type="radio" name="is_top" value="1" {if condition="$info.is_top == 1"}checked{/if}>是</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">状态</label>
+                        <div class="col-sm-6">
+                            <label class="radio-inline"><input type="radio" name="status" {if condition="$info.status == 1"}checked{/if} value="1" >发布</label>
+                            <label class="radio-inline"><input type="radio" name="status" {if condition="$info.status == 2"}checked{/if} value="0">隐藏</label>
+                        </div>
+                    </div>
+
+                    <!--广告-->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">是不是广告</label>
+                        <div class="col-sm-6">
+                            <label class="radio-inline"><input type="radio" name="is_advertising" value="1" {if condition="$info.is_advertising == 1"}checked{/if}>是</label>
+                            <label class="radio-inline"><input type="radio" name="is_advertising" value="0" {if condition="$info.is_advertising == 0"}checked{/if}>否</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="button" class="btn btn-info btn-single pull-right edit-button" value="Save changes">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{/block}
+
+{block name="modal"}
+
+<div class="modal fade bs-example-modal-lg" id="upload-show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">上传进度</h4>
+            </div>
+            <div class="modal-body">
+                <div class="page-container">
+                    <div class=" main-content ">
+                        <div class="row table-responsive">
+                            <table class="table table-bordered table-striped" id="example-dropzone-filetable">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th>Name</th>
+                                    <th>Upload Progress</th>
+                                    <th>Size</th>
+                                    <th>Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td colspan="5">Files list will appear here</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" id="cancel">取消上传</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+
+
+{block name="js"}
+<script src="/static/assets/js/dropzone/dropzone.js"></script>
+<script src="/static/assets/js/datepicker/bootstrap-datepicker.js"></script>
+<script src="/static/assets/js/timepicker/bootstrap-timepicker.min.js"></script>
+
+<script>
+    var ue = UE.getEditor('container');
+    // ue.ready(function() {
+    //     //设置编辑器的内容
+    //ue.setContent('{$info.url}');
+    //     //获取html内容，返回: <p>hello</p>
+    //     // var html = ue.getContent();
+    //     // console.log(html)
+    //     // //获取纯文本内容，返回: hello
+    //var txt = ue.getContentTxt();
+    //     // console.log(txt);
+    // });
+    //编辑分类表单提交
+    $(".edit-button").click(function(){
+        var targetUrl = $("#edit-form").attr("action");
+        var txt = ue.getContentTxt();
+        var data = $("#edit-form").serialize();
+        data = data+"&contentTxt="+txt;
+        $.ajax({
+            type:'post',
+            url:targetUrl,
+            cache: false,
+            data:data,
+            dataType:'json',
+            success:function(data){
+                if(data.code == 1) {
+                    success(data.message);
+                    setTimeout("window.location.href='/admin/article/index'",1000);
+                }else{
+                    error(data.message);
+                }
+            }
+        })
+    });
+
+</script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function($)
+    {
+        var i = 1,
+        $example_dropzone_filetable = $("#example-dropzone-filetable"),
+        example_dropzone = $("#advancedDropzone_poster").dropzone({
+            url: '/admin/base/uploadFile',
+            parallelUploads: 1,//一次上传的文件数量
+            maxFiles:1,//一次性上传的文件数量上限
+            maxFilesize:500, //上传文件最大尺寸
+            init: function () {
+                var submitButton = document.querySelector("#cancel")
+                myDropzone = this;
+                submitButton.addEventListener("click", function () {
+                    myDropzone.removeAllFiles(true);
+                });
+            },
+            // Events
+            addedfile: function(file)
+            {
+                $('#upload-show').modal('toggle')
+
+                $example_dropzone_filetable.find('tbody').html('');
+
+                var size = parseInt(file.size/1024, 10);
+                size = size < 1024 ? (size + " KB") : (parseInt(size/1024, 10) + " MB");
+
+                var	$el = $('<tr>\
+                                            <td class="text-center">'+(i++)+'</td>\
+                                            <td>'+file.name+'</td>\
+                                            <td><div class="progress progress-striped"><div class="progress-bar progress-bar-warning"></div></div></td>\
+                                            <td>'+size+'</td>\
+                                            <td>Uploading...</td>\
+                                        </tr>');
+
+                $example_dropzone_filetable.find('tbody').append($el);
+                file.fileEntryTd = $el;
+                file.progressBar = $el.find('.progress-bar');
+            },
+
+            uploadprogress: function(file, progress, bytesSent)
+            {
+                file.progressBar.width(progress + '%');
+            },
+
+            success: function(file,res)
+            {
+                file.fileEntryTd.find('td:last').html('<span class="text-success">Uploaded</span>');
+                file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-success');
+                if(res.code == 1) {
+                    $('#edit-form #poster_url').val(res.data.url);
+                    $('#edit-form #show_poster_url').attr('src',res.data.url);
+                    $('#show-div').css('display','block');
+                    $('#show_poster_url').css('display','block');
+                    success(res.message);
+                    $('#upload-show').modal('toggle')
+                    myDropzone.removeAllFiles(true);
+                }else{
+                    error(res.message);
+                    myDropzone.removeAllFiles(true);
+                }
+
+            },
+
+            //取消上传
+            canceled: function (file) {
+                file.fileEntryTd.find('td:last').html('<span class="text-danger">Cancel</span>');
+                file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-red');
+            },
+
+            error: function(file)
+            {
+                file.fileEntryTd.find('td:last').html('<span class="text-danger">Failed</span>');
+                file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-red');
+            }
+        });
+    });
+</script>
+{/block}

@@ -1,0 +1,51 @@
+
+{if($type == 3 || $type == 9)}
+    <label class="col-sm-2 control-label">广告内容</label>
+    <div class="col-sm-4">
+        <select class="form-control control-type" name="advertising_id">
+            <option value="">选择广告内容</option>
+            {foreach $advertisingList as $type}
+            <option value="{$type.id}">{$type.name}</option>
+            {/foreach}
+        </select>
+    </div>
+{elseif($type ==4 || $type ==5 || $type ==6)}
+<label class="col-sm-2 control-label">数据规则</label>
+<div class="col-sm-2">
+    <select class="form-control control-type" name="data_role_id">
+        <option value="">选择数据规则</option>
+        {foreach $data_role as $role}
+        <option value="{$role.id}">{$role.name}</option>
+        {/foreach}
+    </select>
+</div>
+<label class="col-sm-2 control-label">显示条数</label>
+<div class="col-sm-1">
+    <input type="text" class="form-control" name="data_count" oninput="if(value<3 || value!=value.replace(/[^\d]/g,''))value= 3">
+</div>
+{elseif($type == 2 || $type == 8)}
+<label class="col-sm-2 control-label">选择关键词</label>
+<div class="col-sm-6">
+    <script>
+        jQuery(document).ready(function($)
+        {
+            $("#s2example-4").select2({
+                placeholder: '选择关键词',
+                allowClear: true
+            }).on('select2-open', function()
+            {
+                // Adding Custom Scrollbar
+                $(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+            });
+        });
+    </script>
+    <select class="form-control" id="s2example-4" name="keyWords">
+        <option></option>
+        <optgroup label="关键词列表">
+            {foreach $keyWords as $tag}
+            <option value="{$tag.id}">{$tag.name}</option>
+            {/foreach}
+        </optgroup>
+    </select>
+</div>
+{/if}

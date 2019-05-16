@@ -1,0 +1,252 @@
+{extend name="public/base" /}
+
+{block name="content"}
+<!--页面路径 和 页面标题-->
+<div class="page-title">
+
+    <div class="title-env">
+        <h1 class="title">视频管理</h1>
+        <p class="description">所有视频</p>
+    </div>
+
+    <div class="breadcrumb-env">
+
+        <ol class="breadcrumb bc-1">
+            <li>
+                <a href="/admin"><i class="fa-home"></i>Home</a>
+            </li>
+            <li>
+                <a href="/admin/video/index">视频管理</a>
+            </li>
+            <li class="active">
+                <strong>视频列表</strong>
+            </li>
+        </ol>
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">视频列表</font></font></h3>
+                <div class="panel-options">
+                    <a href="/admin/video/add" class="btn btn-secondary" style="color: white">
+                        添加视频
+                    </a>
+                </div>
+            </div>
+
+            <div class="panel-body panel-border">
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">序号</font></font></th>
+                                <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font></font></th>
+                                <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">基本信息</font></font></th>
+                                <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">交互数据</font></font></th>
+                                <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">视频描述</font></font></th>
+                                <th style="text-align: center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">属性</font></font></th>
+                                <th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">操作</font></font></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr style="height: 10%">
+                                <td style="width: 5%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1</font></font></td>
+                                <td style="width: 20%">
+                                    <image class="img-thumbnail" style="width: 230px;height: 150px" src="/static/assets/images/text.jpeg"></image>
+                                </td>
+                                <td style="width: 20%">
+                                    <p class="text-left">名字：<strong>rendered as bold text</strong></p>
+                                    <p class="text-left">作者：<span class="label label-info">Success</span></p>
+                                    <p class="text-left">上传时间：2018-05-22 13:25:00</p>
+                                    <p class="text-left">时长：04:00</p>
+                                </td>
+                                <td style="width: 10%">
+                                    <p class="text-left"><i class="fa fa-video-camera"></i> 125次</p>
+                                    <p class="text-left"><i class="fa fa-heart-o"></i> 125次</p>
+                                    <p class="text-left"><i class="fa fa-share-alt"></i> 125次</p>
+                                </td>
+                                <td>
+                                    <p class="yichu">text-overflow属性仅是注解，当文本溢出时是否显示省略标记。并不具备其它的样式属性定义。
+                                    我们想要实现溢出时产生省略号的效果。还必须定义：强制文本在一行内显示（white-space:nowrap）
+                                    及溢出内容为隐藏（overflow:hidden）。只有这样才能实现溢出文本显示省略号的效果。</p>
+                                </td>
+                                <td style="width: 15%">
+                                    <form role="form" class="form-horizontal">
+
+                                        <div class="form-group">
+                                            <label class="col-sm-5 control-label">状态</label>
+                                            <div class="col-sm-6">
+                                                <div class="form-block">
+                                                    <input type="checkbox" checked="" class="iswitch iswitch-secondary">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-5 control-label">热门</label>
+                                            <div class="col-sm-6">
+                                                <div class="form-block">
+                                                    <input type="checkbox" checked="" class="iswitch iswitch-secondary">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-5 control-label">推荐</label>
+                                            <div class="col-sm-6">
+                                                <div class="form-block">
+                                                    <input type="checkbox" checked="" class="iswitch iswitch-secondary">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </td>
+                                <td style="width: 5%">
+                                    <p class="text-left">
+                                        <a class="btn btn-icon btn-blue" href="/admin/video/edit/id/id">
+                                            <i class="fa-edit"></i>
+                                        </a>
+                                    </p>
+                                    <p class="text-left">
+                                        <button class="btn btn-icon btn-purple" data-toggle="modal" data-target="#modal-6" data-id="id" data-share="125" data-collection="125" data-look="123">
+                                            <i class="fa-plus"></i>
+                                        </button>
+                                    </p>
+                                    <p class="text-left">
+                                        <button class="btn btn-icon btn-red" id="deleted" data-id="id">
+                                            <i class="fa-trash"></i>
+                                        </button>
+                                    </p>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{/block}
+
+{block name="modal"}
+<div class="modal fade" id="modal-6" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <form action="/admin/video/saveNum" method="post">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">交互数据</h4>
+                </div>
+
+                <div class="modal-body">
+                    <input type="hidden" value="" id="video_id" name="video_id">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="look_num" class="control-label">播放数</label>
+                                <input type="text" class="form-control" id="look_num" name="look_num" value="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="share_num" class="control-label">分享数</label>
+                                <input type="text" class="form-control" id="share_num" name="share_num" value="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="collection_num" class="control-label">收藏数</label>
+                                <input type="text" class="form-control" id="collection_num" name="collection_num" value="">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-info" onclick="save_change()" value="Save changes">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{/block}
+
+{block name="js"}
+<script>
+    $('#modal-6').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var id = button.data('id');
+        var share = button.data('share');
+        var look = button.data('look');
+        var collection = button.data('collection');
+        var modal = $(this);
+        modal.find('.modal-body #video_id').val(id)
+        modal.find('.modal-body #share_num').val(share)
+        modal.find('.modal-body #look_num').val(look)
+        modal.find('.modal-body #collection_num').val(collection)
+    })
+
+    //更改状态
+    function change_status() {
+        $.ajax({
+            url:'/admin/video/change',
+            method: 'POST',
+            dataType: 'json',
+            data:{
+                id:id,
+            },
+            success: function(res)
+            {
+                if(res.code == 0) {
+                    window.location.reload();
+                }else{
+                    error(res.message);
+                }
+            }
+        })
+    }
+
+    //删除视频
+    $("#deleted").click(function(e) {
+        if(confirm("是否确认删除")){
+            var id = $(this).data('id');
+            $.ajax({
+                url:'/admin/video/deleted',
+                method: 'POST',
+                dataType: 'json',
+                data:{
+                    id:id,
+                },
+                success: function(res)
+                {
+                    if(res.code == 0) {
+                        success(res.message);
+                    }else{
+                        error(res.mssage);
+                    }
+                }
+            })
+        }
+    })
+    
+</script>
+{/block}

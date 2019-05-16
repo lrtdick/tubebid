@@ -1,0 +1,180 @@
+{extend name="public/base" /}
+
+{block name="content"}
+<!--页面路径 和 页面标题-->
+<div class="page-title">
+
+    <div class="title-env">
+        <h1 class="title">订单管理</h1>
+        <p class="description">所有订单</p>
+    </div>
+
+    <div class="breadcrumb-env">
+
+        <ol class="breadcrumb bc-1">
+            <li>
+                <a href="/admin"><i class="fa-home"></i>Home</a>
+            </li>
+            <li class="active">
+                <strong>订单列表</strong>
+            </li>
+        </ol>
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">订单列表</font></font></h3>
+                <div class="panel-options">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <form role="form" class="form-inline" action="/admin/finance/order">
+                                <div class="form-group pull-left">
+                                    <select name="pay_type" class="form-control">
+                                        <option value="0">支付类型</option>
+                                        <option value="1" {if condition="$Think.get.pay_type == 1"}selected{/if}>支付宝</option>
+                                        <option value="2" {if condition="$Think.get.pay_type == 2"}selected{/if}>微信</option>
+                                    </select>
+                                </div>
+                                <div class="form-group pull-left">
+                                    <select name="status" class="form-control">
+                                        <option value="0">订单状态</option>
+                                        <option value="1" {if condition="$Think.get.status == 1"}selected{/if}>未支付</option>
+                                        <option value="2" {if condition="$Think.get.status == 2"}selected{/if}>已支付</option>
+                                        <option value="3" {if condition="$Think.get.status == 3"}selected{/if}>退款中</option>
+                                        <option value="4" {if condition="$Think.get.status == 4"}selected{/if}>已退款</option>
+                                        <option value="5" {if condition="$Think.get.status == 5"}selected{/if}>取消订单</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group pull-left">
+                                    <input type="text" name="no" class="form-control" size="25" placeholder="订单号" value="{$Think.get.no}">
+                                </div>
+
+                                <div class="form-group pull-left">
+                                    <button class="btn btn-secondary btn-single">Search</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="panel-body panel-border">
+
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>订单号</th>
+                                <th>用户</th>
+                                <th>产品标题</th>
+                                <th>产品类型</th>
+                                <th>第三方订单号</th>
+                                <th>支付类型</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {foreach $lists as $key => $list}
+                            <tr>
+                                <td>{$list.out_trade_no}</td>
+                                <td>{$list.user_name}</td>
+                                <td>{$list.course_name}</td>
+                                <td>{if($list.product_type == 1)}视频点播{elseif($list.product_type == 2)}优惠券{/if}</td>
+                                <td>{$list.transaction_id}</td>
+                                <td>
+                                    {if condition="$list.pay_type == 1"}
+                                    <span class="btn btn-success"><i class="fa-wechat"></i> 微信</span>
+                                    {/if}
+                                    {if condition="$list.pay_type == 2"}
+                                    <span class="btn btn-info">支付宝</span>
+                                    {/if}
+                                </td>
+                                <td>
+                                    {if condition="$list.status == 1"}
+                                    <span class="btn btn-danger">未支付</span>
+                                    {/if}
+                                    {if condition="$list.status == 2"}
+                                    <span class="btn btn-success">已支付</span>
+                                    {/if}
+                                    {if condition="$list.status == 3"}
+                                    <span class="btn btn-warning">退款中</span>
+                                    {/if}
+                                    {if condition="$list.status == 4"}
+                                    <span class="btn btn-info">已退款</span>
+                                    {/if}
+                                    {if condition="$list.status == 5"}
+                                    <span class="btn btn-default">取消订单</span>
+                                    {/if}
+                                </td>
+                                <td>
+                                    <!--<a class="btn btn-icon btn-success" data-toggle="modal" data-target="#edit-cate" data-id="{$list.id}">
+                                        退款
+                                    </a>
+-->
+                                    <button class="btn btn-icon btn-red" onclick="deleted({$list.id})">
+                                       取消订单
+                                    </button>
+
+                                    <!--】-->
+                                </td>
+                            </tr>
+                            {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-md-6 control-label">共 {$total} 条记录</label>
+                    <div class="col-md-6 text-right">
+                        <nav aria-label="Page navigation">
+                            {$page}
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{/block}
+
+{block name="js"}
+
+
+<script>
+    //删除视频
+    function deleted(id) {
+        if(confirm("是否取消订单")){
+            $.ajax({
+                url:'/admin/finance/orderDel',
+                method: 'POST',
+                dataType: 'json',
+                data:{
+                    id:id,
+                },
+                success: function(res)
+                {
+                    if(res.code == 0) {
+                        success(res.message);
+                        setTimeout("location.reload()",1000);
+                    }else{
+                        error(res.mssage);
+                    }
+                }
+            })
+        }
+    };
+</script>
+{/block}

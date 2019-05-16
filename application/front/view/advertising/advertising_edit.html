@@ -1,0 +1,137 @@
+{extend name="public/base" /}
+
+{block name="content"}
+<style>
+    .img-responsive [data-ratio="16:9"]{
+        height: 7rem;
+    }
+    .test{
+        border-radius: 0%;
+        width: 100%;
+        padding-bottom: 6%;
+        line-height:9vw;
+    }
+</style>
+
+<!--页面路径 和 页面标题-->
+<div class="page-title">
+
+    <div class="title-env">
+        <h1 class="title">广告管理</h1>
+        <p class="description">广告信息</p>
+    </div>
+
+    <div class="breadcrumb-env">
+
+        <ol class="breadcrumb bc-1">
+            <li>
+                <a href="/admin"><i class="fa-home"></i>Home</a>
+            </li>
+            <li>
+                <a href="/admin/advertising/index">广告管理</a>
+            </li>
+            <li class="active">
+                <strong>广告信息</strong>
+            </li>
+        </ol>
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">编辑广告</font></font></h3>
+            </div>
+
+            <div class="panel-body">
+                <form id="edit-form" method="post" class="form-horizontal" action="/admin/advertising/editPost" enctype="multipart/form-data">
+                    <input type="hidden" name="id" value="{$info.id}">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">编辑内容</label>
+                        <div class="col-sm-6">
+                            <script id="container" name="content" type="text/plain" class="col-sm-12">
+                                {$info.content}
+                            </script>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">标题</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="name" value="{$info.name}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">发布时间</label>
+                        <div class="col-sm-6">
+                            <div class="date-and-time">
+                                <input type="text" class="form-control datepicker" name="date" value="{$info.date}" data-format="yyyy-mm-dd">
+                                <input type="text" class="form-control timepicker" name="time" value="{$info.time}" data-template="dropdown" data-show-seconds="true"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">是否置顶</label>
+                        <div class="col-sm-6">
+                            <label class="radio-inline"><input type="radio" name="is_top" value="1" {if condition="$info.is_top == 1"}checked{/if}>否</label>
+                            <label class="radio-inline"><input type="radio" name="is_top" value="2" {if condition="$info.is_top == 2"}checked{/if}>是</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">状态</label>
+                        <div class="col-sm-6">
+                            <label class="radio-inline"><input type="radio" name="status" {if condition="$info.status == 1"}checked{/if} value="1" >发布</label>
+                            <label class="radio-inline"><input type="radio" name="status" {if condition="$info.status == 2"}checked{/if} value="2">隐藏</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="button" class="btn btn-info btn-single pull-right" id="edit-button" value="Save changes">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{/block}
+
+{block name="js"}
+<script src="/static/assets/js/dropzone/dropzone.js"></script>
+<script src="/static/assets/js/datepicker/bootstrap-datepicker.js"></script>
+<script src="/static/assets/js/timepicker/bootstrap-timepicker.min.js"></script>
+
+<script>
+    var ue = UE.getEditor('container');
+
+    //编辑分类表单提交
+    $("#edit-button").click(function(){
+        var targetUrl = $("#edit-form").attr("action");
+        //var txt = ue.getContentTxt();
+        var data = $("#edit-form").serialize();
+        //data = data+"&contentTxt="+txt;
+        $.ajax({
+            type:'post',
+            url:targetUrl,
+            cache: false,
+            data:data,
+            dataType:'json',
+            success:function(data){
+                console.log(data)
+                if(data.code == 1) {
+                    success(data.message);
+                    setTimeout("window.location.href='/admin/advertising/index'",1000);
+                }else{
+                    error(data.message);
+                }
+            }
+        })
+    });
+
+</script>
+
+{/block}

@@ -1,0 +1,162 @@
+
+<div class="col-sm-4">
+    <div id="front_info">
+        <form id="edit_control" class="form-horizontal" role="form" action="">
+            <h4>
+                组件信息
+            </h4>
+            <div class="form-group">
+                <label for="control_name" class="col-sm-2 control-label">ID</label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" name="ctrl_id" value="{$control_info.id}" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exam_img" class="col-sm-2 control-label">示例</label>
+                <div class="col-sm-10">
+                    <img src="{$control_info.exam_img}" id="exam_img" alt="" style="width:120px;height: 80px;">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="control_name" class="col-sm-2 control-label">标题</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="control_name" name="control_name" value="{$control_info.control_name}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="control_name" class="col-sm-2 control-label">描述</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="control_desc" name="control_desc" value="{$control_info.control_desc}">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">选择标签</label>
+                <div class="col-sm-6">
+                    <script type="text/javascript">
+                        jQuery(document).ready(function($)
+                        {
+                            $("#s2example-3").select2({
+                                placeholder: 'Choose your KeyWords',
+                                allowClear: true
+                            }).on('select2-open', function()
+                            {
+                                // Adding Custom Scrollbar
+                                $(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+                            });
+                        });
+                    </script>
+                    <select class="form-control" id="s2example-3" name="keyWords[]" multiple>
+                        <option></option>
+                        <optgroup label="标签列表">
+                            {foreach $keyWords_list as $tag}
+                            <option value="{$tag.id}">{$tag.name}</option>
+                            {/foreach}
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label   class="col-sm-2 control-label">类型</label>
+                <div class="col-sm-10">
+                    <select class="form-control" name="control_type" disabled="disabled">
+                        {foreach $control_type as $type}
+                        <option value="{$type.id}" {if($control_info.control_type == $type.id)} selected {/if}>{$type.type_name}</option>
+                        {/foreach}
+                    </select>
+                </div>
+            </div>
+            <!--<div class="form-group">-->
+                <!--<label class="col-sm-2 control-label">内空介绍</label>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<textarea class="form-control" rows="10" name="content">{$control_info.content}</textarea>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="form-group">
+                <label for="sort" class="col-sm-2 control-label">排序</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="sort" name="sort" value="{$control_info.sort}">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" class="btn btn-primary" id="edit-ctrl-save">保存</button>
+                    <button type="button" class="btn btn-warning" id="control_del">删除</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="col-sm-8">
+    <div id="table_data">
+        {if($control_info.control_type == 1)}
+        <div class="row" style="border-bottom: 1px solid #fff7e6">
+            <div class="col-sm-1">
+                <input type="hidden" class="page_id" value="1">
+                <button class="btn btn-icon btn-success" data-toggle="modal" data-target="#add-banner" style="margin-top: 10px;">
+                    <i class="fa-plus"></i> 添加轮播图片
+                </button>
+            </div>
+        </div>
+
+        {if($banner_list)}
+        <table class="table">
+            <thead>
+            <tr>
+                <th style="width: 8%">ID</th>
+                <th style="width: 10%">排序</th>
+                <th>图片</th>
+                <th>链接</th>
+                <th style="width: 10%">位置</th>
+                <th>状态</th>
+                <th style="width: 17%">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {foreach $banner_list as $list}
+            <tr>
+                <td>{$list.id}</td>
+                <td>{$list.sort}</td>
+                <td>
+                    <img src="{$list.image}" width="120px" height="80px">
+                </td>
+                <td>{$list.url}</td>
+                <td>{$list.position}</td>
+                <td>
+                    <input type="checkbox" onclick="change_status({$list.id},'banner','status')" {if condition="$list.status == 1"}checked=""{/if}  class="iswitch iswitch-success">
+                </td>
+                <td>
+                    <button class="btn btn-icon btn-success" data-toggle="modal" data-target="#edit-banner" data-id="{$list.id}">
+                        <i class="fa-edit"></i>
+                    </button>
+
+                    <button class="btn btn-icon btn-red" onclick="({$list.id},'banner')">
+                        <i class="fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+            {/foreach}
+            </tbody>
+        </table>
+
+        <div class="row">
+            <label class="col-md-6 control-label">共 {$total} 条记录</label>
+            <div class="col-md-6 text-right">
+                <nav aria-label="Page navigation">
+                </nav>
+            </div>
+        </div>
+        {else}
+        <div style="text-align: center">
+            <h3>轮播组件暂无图片，请先添加</h3>
+        </div>
+
+        {/if}
+        {else}
+        <div style="text-align: center">
+            <h3>列表组件暂无内容</h3>
+        </div>
+        {/if}
+    </div>
+</div>
+

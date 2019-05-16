@@ -1,0 +1,86 @@
+{extend name="public/base" /}
+
+{block name="content"}
+<body>
+
+<!--<textarea id='textarea_123' rows="11" name="preview" class="preview">123-->
+<!--456-->
+<!--789-->
+<!--</textarea>-->
+<!--<textarea id='textarea_123' rows="11" name="preview" class="preview">7894564123</textarea>-->
+
+<div id="textarea_123" class="textarea"><p>123
+    456
+    789</p>
+</div>
+<div id="textarea_456" class="textarea">7894564123</div>
+<!--模态框-->
+<!--data-backdrop="false" 取消自动启动遮罩层-->
+<div class="modal fade" id="markdown-model" style="display: none" data-backdrop="false">
+    <div class="modal-dialog">
+        <div id="wmd-editor" class="panel">
+            <div id="wmd-button-bar"></div>
+            <textarea rows="11" id="wmd-input" class="wmd-textarea">
+                </textarea>
+            <a class="close" data-dismiss="modal">×</a>
+            <div id="wmd-preview" class="wmd-panel"></div>
+            <button type="button" class="btn btn-default" data-dismiss="modal">更改</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    //转义 反转义
+
+    function HTMLEncode(html) {
+        var temp = document.createElement("div");
+        (temp.textContent != null) ? (temp.textContent = html) : (temp.innerText = html);
+        var output = temp.innerHTML;
+        temp = null;
+        return output;
+    }
+
+    function HTMLDecode(text) {
+        var temp = document.createElement("div");
+        temp.innerHTML = text;
+        var output = temp.innerText || temp.textContent;
+        temp = null;
+        return output;
+    }
+
+    var title = $('#wmd-preview');
+    title.bind('DOMNodeInserted', function (e) {
+        $("#wmd-preview pre").addClass("prettyprint");
+        prettyPrint();
+    });
+
+    var modal_div = $('#markdown-model');
+    var modal_textarea = $('#wmd-input');
+
+    //点击textarea获取值并修改模态框的值
+    var textarea;
+    $('.textarea').click(function () {
+        textarea = this;
+        modal_div.modal('show');
+    });
+
+    modal_div.on('show.bs.modal', function (e) {
+        console.log(textarea.id);
+        var active_textarea=document.getElementById(textarea.id);
+        modal_textarea.val(active_textarea.innerHTML);
+        // console.error(textarea.id);
+    });
+
+    modal_div.on('hide.bs.modal', function (e) {
+        var active_textarea=document.getElementById(textarea.id);
+        var modal_preview =document.getElementById('wmd-preview');
+
+        console.error(modal_preview.innerHTML);
+        active_textarea.innerHTML =modal_preview.innerHTML;
+        console.error(active_textarea.innerHTML)
+        // do something...
+    })
+
+</script>
+</body>
+{/block}

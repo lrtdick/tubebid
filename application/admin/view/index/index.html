@@ -1,0 +1,63 @@
+{extend name="public/base" /}
+
+{block name="content"}
+<!--页面路径 和 页面标题-->
+<div class="page-title">
+
+    <div class="title-env">
+        <h1 class="title">主页面</h1>
+        <p class="description">查看后台操作日志</p>
+    </div>
+
+    <div class="breadcrumb-env">
+
+        <ol class="breadcrumb bc-1">
+            <li>
+                <a href="/admin"><i class="fa-home"></i>Home</a>
+            </li>
+            <li class="active">
+                <strong>日志记录</strong>
+            </li>
+        </ol>
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-sm-3">
+
+        <div class="xe-widget xe-counter-block xe-counter-block-blue" >
+            <div class="xe-upper">
+
+                <div class="xe-icon">
+                    <i class="linecons-user"></i>
+                </div>
+                <div class="xe-label">
+                    <strong class="num">{$user.all}</strong>
+                    <span>用户总数</span>
+                </div>
+
+            </div>
+            <div class="xe-lower">
+                <div class="border"></div>
+
+                <span>今日新增</span>
+                <strong>{$user.today}</strong>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-7">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">反馈意见列表</font></font></h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+{/block}

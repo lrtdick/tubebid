@@ -1,0 +1,291 @@
+{extend name="public/base" /}
+
+{block name="content"}
+<!--页面路径 和 页面标题-->
+<div class="page-title">
+
+    <div class="title-env">
+        <h1 class="title">作者管理</h1>
+        <p class="description">作者信息</p>
+    </div>
+
+    <div class="breadcrumb-env">
+
+        <ol class="breadcrumb bc-1">
+            <li>
+                <a href="/admin"><i class="fa-home"></i>Home</a>
+            </li>
+            <li>
+                <a href="/admin/author/index">作者管理</a>
+            </li>
+            <li class="active">
+                <strong>作者信息</strong>
+            </li>
+        </ol>
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">编辑作者</font></font></h3>
+            </div>
+
+            <div class="panel-body">
+                <form id="edit-form" method="post" class="form-horizontal" action="/admin/author/editPost" id="edit-form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">头像</label>
+                        <div class="col-sm-4 text-center">
+                            <div class="droppable-area">
+                                <img src="{$info.avatar}" style="width: 140px;height:140px;border-radius: 50%">
+                            </div>
+                        </div>
+                        <div class="col-sm-6 text-center">
+                            <div id="advancedDropzone" class="droppable-area" style="width: 140px;line-height: 140px;">
+                                点击上传新头像
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">封面图</label>
+                        <div class="col-sm-4 text-center">
+                            <div class="droppable-area">
+                                <img src="{$info.poster}" style="width: 180px;">
+                            </div>
+                        </div>
+                        <div class="col-sm-6 text-center">
+                            <div id="advancedDropzone1" class="droppable-area" style="width: 180px;line-height: 140px;border-radius: 0%">
+                                点击上传新封面
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">名字</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" name="name" value="{$info.name}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">性别</label>
+                        <div class="col-sm-6">
+                            <label class="radio-inline"><input type="radio" name="gender" value="0" {if condition="$info.gender == 0"}checked{/if}>保密</label>
+                            <label class="radio-inline"><input type="radio" name="gender" value="1" {if condition="$info.gender == 1"}checked{/if}>男</label>
+                            <label class="radio-inline"><input type="radio" name="gender" value="2" {if condition="$info.gender == 2"}checked{/if}>女</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">简介</label>
+                        <div class="col-sm-6">
+                            <textarea class="form-control" cols="8" rows="8" name="desc">{$info.signature}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">状态</label>
+                        <div class="col-sm-6">
+                            <label class="radio-inline"><input type="radio" name="status" value="1" {if condition="$info.status == 1"}checked{/if}>发布</label>
+                            <label class="radio-inline"><input type="radio" name="status" value="2" {if condition="$info.status == 2"}checked{/if}>隐藏</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="file_url" id="file_url" value="{$info.avatar}">
+                        <input type="hidden" name="cover_url" id="cover_url" value="{$info.poster}">
+                        <input type="hidden" name="id" value="{$info.id}">
+                        <input type="button" class="btn btn-info btn-single pull-right" id="edit-button" value="Save changes">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{/block}
+
+{block name="modal"}
+
+<div class="modal fade bs-example-modal-lg" id="upload-show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">上传进度</h4>
+            </div>
+            <div class="modal-body">
+                <div class="page-container">
+                    <div class=" main-content ">
+                        <div class="row table-responsive">
+                            <table class="table table-bordered table-striped" id="example-dropzone-filetable">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th>Name</th>
+                                    <th>Upload Progress</th>
+                                    <th>Size</th>
+                                    <th>Status</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td colspan="5">Files list will appear here</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{/block}
+
+{block name="js"}
+<script src="/static/assets/js/dropzone/dropzone.js"></script>
+
+<script>
+    //编辑作者表单提交
+    $("#edit-button").click(function(){
+        var targetUrl = $("#edit-form").attr("action");
+        var data = $("#edit-form").serialize();
+        $.ajax({
+            type:'post',
+            url:targetUrl,
+            cache: false,
+            data:data,
+            dataType:'json',
+            success:function(data){
+                if(data.code == 1) {
+                    success(data.message);
+                    setTimeout("window.location.href='/admin/author/index'",1000);
+                }else{
+                    error(data.message);
+                }
+            }
+        })
+    });
+
+</script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function($)
+    {
+        var i = 1,
+        $example_dropzone_filetable = $("#example-dropzone-filetable"),
+            example_dropzone = $("#advancedDropzone").dropzone({
+                url: '/admin/base/uploadFile',
+                // Events
+                addedfile: function(file)
+                {
+                    $('#upload-show').modal('toggle')
+                    if(i == 1)
+                    {
+                        $example_dropzone_filetable.find('tbody').html('');
+                    }
+
+                    var size = parseInt(file.size/1024, 10);
+                    size = size < 1024 ? (size + " KB") : (parseInt(size/1024, 10) + " MB");
+
+                    var	$el = $('<tr>\
+													<td class="text-center">'+(i++)+'</td>\
+													<td>'+file.name+'</td>\
+													<td><div class="progress progress-striped"><div class="progress-bar progress-bar-warning"></div></div></td>\
+													<td>'+size+'</td>\
+													<td>Uploading...</td>\
+												</tr>');
+
+                    $example_dropzone_filetable.find('tbody').append($el);
+                    file.fileEntryTd = $el;
+                    file.progressBar = $el.find('.progress-bar');
+                },
+
+                uploadprogress: function(file, progress, bytesSent)
+                {
+                    file.progressBar.width(progress + '%');
+                },
+
+                success: function(file,res)
+                {
+                    file.fileEntryTd.find('td:last').html('<span class="text-success">Uploaded</span>');
+                    file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-success');
+                    $('#advancedDropzone').html('');
+                    $('#advancedDropzone').append('<img style="width: 140px;height:140px;border-radius: 50%" src="' + res.data.url + '" />');
+                    $('#file_url').val(res.data.url);
+                    $('#upload-show').modal('toggle')
+                },
+
+                error: function(file)
+                {
+                    file.fileEntryTd.find('td:last').html('<span class="text-danger">Failed</span>');
+                    file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-red');
+                }
+            });
+
+        $("#edit-advancedDropzone").css({
+            minHeight: 140
+        });
+
+
+        example_dropzone1 = $("#advancedDropzone1").dropzone({
+            url: '/admin/base/uploadFile',
+            // Events
+            addedfile: function(file)
+            {
+                $('#upload-show').modal('toggle')
+                if(i == 1)
+                {
+                    $example_dropzone_filetable.find('tbody').html('');
+                }
+
+                var size = parseInt(file.size/1024, 10);
+                size = size < 1024 ? (size + " KB") : (parseInt(size/1024, 10) + " MB");
+
+                var	$el = $('<tr>\
+													<td class="text-center">'+(i++)+'</td>\
+													<td>'+file.name+'</td>\
+													<td><div class="progress progress-striped"><div class="progress-bar progress-bar-warning"></div></div></td>\
+													<td>'+size+'</td>\
+													<td>Uploading...</td>\
+												</tr>');
+
+                $example_dropzone_filetable.find('tbody').append($el);
+                file.fileEntryTd = $el;
+                file.progressBar = $el.find('.progress-bar');
+            },
+
+            uploadprogress: function(file, progress, bytesSent)
+            {
+                file.progressBar.width(progress + '%');
+            },
+
+            success: function(file,res)
+            {
+                file.fileEntryTd.find('td:last').html('<span class="text-success">Uploaded</span>');
+                file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-success');
+                $('#advancedDropzone1').html('');
+                $('#advancedDropzone1').append('<img style="width: 180px;height:140px;" src="' + res.data.url + '" />');
+                $('#cover_url').val(res.data.url);
+                $('#upload-show').modal('toggle')
+            },
+
+            error: function(file)
+            {
+                file.fileEntryTd.find('td:last').html('<span class="text-danger">Failed</span>');
+                file.progressBar.removeClass('progress-bar-warning').addClass('progress-bar-red');
+            }
+        });
+
+        $("#edit-advancedDropzone1").css({
+            minHeight: 140
+        });
+
+    });
+</script>
+{/block}

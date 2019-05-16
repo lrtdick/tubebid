@@ -1,0 +1,26 @@
+{if($control_list.code == 1)}
+{if($control_list.control)}
+    {foreach $control_list.control as $list}
+    <div style="padding: 3px 6px 3px 6px;position: relative;">
+        <div class="front_box click_info" value="{$list.id}" control_type="{$list.control_type}">
+            <img src="{$list.exam_img}" alt="" style="min-height: 118px;max-width: 283px;">
+        </div>
+    </div>
+    {/foreach}
+{else}
+    <div style="padding: 3px 6px 3px 6px;">
+        <div class="front_box">
+          <span style="display: block;text-align: center;padding-top: 30px;" data-toggle="modal" data-target="#add-control">
+              <i style="display:inline-block;background: url('__ROOT__/static/assets/images/weixin_icon.png') 0 -4418px no-repeat;background-position: -36px 0;width: 36px;height: 36px;vertical-align: middle"></i>
+              <srtong style="display: block">点击添加组件</srtong>
+          </span>
+        </div>
+    </div>
+{/if}
+{else if($control_list.code == 404)}
+<div style="padding: 3px 6px 3px 6px;">
+    <div class="" style="text-align: center;">
+        <h4>选择页面后可查看页面布局示例</h4>
+    </div>
+</div>
+{/if}

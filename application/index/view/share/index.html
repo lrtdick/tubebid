@@ -1,0 +1,116 @@
+<html style="font-size: 18px;">
+
+	<head>
+		<meta charset="utf-8">
+		<title>{$info.name}</title>
+		<meta name="description" content="{$info.desc}" />
+		<meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+		<link href="/static/assets/css/main.css" rel="stylesheet">
+		<script src="/static/assets/js/jquery-1.11.1.min.js"></script>
+	</head>
+	<style>
+		.to_bottom {
+			display: -webkit-inline-box;
+            width: 0;
+            height: 0;
+            border-top: 0.3rem solid #000000;
+            border-left: 0.3rem solid transparent;
+            border-right: 0.3rem solid transparent;
+        }
+         .to_top {
+            width: 0;
+            height: 0;
+            border-bottom: 0.3rem solid #000000;
+            border-left: 0.3rem solid transparent;
+            border-right: 0.3rem solid transparent;
+        }
+	</style>
+	<body>
+	<div id="Div1" style="display: none"><img id="Img1" width="100%" src="{$info.poster}" style="position: absolute; top: 0; left: 0;"></div>
+
+	<div id="wrapper">
+			<div class="vmovier-container">
+				
+				<div class="first-video video" style="height:33%">
+					<div>
+						<div data-log="顶部视频点击播放数" class="video-face log">
+							<img src="{$info.poster}">
+								<span class="play-btn"></span> 
+								<!--<span class="video-duration">03'33''</span>-->
+						</div>
+					</div>
+					<video controls="controls" width="100%" {if condition="$info.downloadable == 2"}controls="true" controlslist="nodownload"{/if} webkit-playsinline='' playsinline='' preload="auto" src="{if !empty($info.demo_url)}{$info['demo_url']}{else}{$info.url}{/if}" style="display: none;" id="video-active" controls oncontextmenu="return false;"></video>
+				</div>
+				
+				
+				<!--标题 标签-->
+				<div class="art-msg">
+					<h2 class="art-title">{$info.name}</h2>
+					<div class="art-catename" style="z-index: 1000;">
+						<span class="new-cate">{$info.played_count}次观看</span>
+					</div>
+				</div>
+				<!--标题 标签 END-->
+				
+				<!--视频简介-->
+				<div class="art-html hiddenHeight">
+					<p>{$info.desc}</p>
+					<div class="more-intro1 to_top"></div>
+				</div>
+				<div class="more-intro to_bottom"></div>
+				
+				<!--视频简介 END-->
+				
+				<!--中间下载APP-->
+				<a href="{$app.value}">
+					<div data-log="文章中间的引导下载button" class="app-down-new-wrap log">
+						<div class="app-left">
+							<span class="app-logo"></span>
+							<span class="app-tip">
+								<span class="fs5">Sketching</span><br>
+								全世界的好手绘
+							</span>
+						</div>
+						<span class="app-down-new-btn">立即安装</span>
+					</div>
+				</a>
+				<!--中间下载APP END-->
+	
+				<!--底部二维码图片-->
+				<div class="wx-warp">
+					<img src="/static/assets/images/app.jpg" alt="">
+				</div>
+				<!--底部二维码图片 END-->
+				
+				<!--底部点击下载App-->
+				<div data-log="底部fixed bar点击数" class="fixed-banner log">
+					<a href="{$app.value}">
+						<img src="/static/assets/images/share_bottom.jpg" alt="">
+					</a>
+				</div>
+				<!--底部点击下载App END-->
+				
+			</div>
+		</div>
+	
+		<script>
+
+            $('.more-intro').click(function(){
+                $('.more-intro').hide()
+                $('.more-intro1').show()
+                $('.art-html').removeClass('hiddenHeight')
+            })
+            $('.more-intro1').click(function(){
+                $('.more-intro1').hide()
+                $('.more-intro').show()
+                $('.art-html').addClass('hiddenHeight')
+            })
+			$('.play-btn').click(function () {
+				$('.video-face').hide();
+				$('#video-active').show();
+                $('#video-active')[0].play();
+            })
+		</script>
+	</body>
+
+</html>

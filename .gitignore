@@ -1,0 +1,11 @@
+.idea/
+runtime/
+resource/
+public/upload/
+database.php
+/application/database.php
+/public/meishi
+/public/phpinfo.php
+/phpinfo.php
+/application/admin/controller/Test.php
+/application/config.php

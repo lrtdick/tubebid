@@ -1,0 +1,1194 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family:"Apple LiGothic Medium"
+}
+
+body {
+	font-family: Microsoft YaHei, \\5FAE\8F6F\96C5\9ED1, PingFang SC, STHeiti, sans-serif;
+	font-family: Open Sans, Arial, Hiragino Sans GB, Microsoft YaHei, \\5FAE\8F6F\96C5\9ED1, STHeiti, WenQuanYi Micro Hei, SimSun, sans-serif;
+	word-break: break-all;
+	word-wrap: break-word;
+	-webkit-tap-highlight-color: rgba(240, 240, 240, 0);
+	-moz-tap-highlight-color: hsla(0, 0%, 94%, 0);
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-user-select: none;
+	-webkit-overflow-scrolling: touch;
+	max-width: 600px;
+	overflow-x: hidden;
+	margin: 0 auto
+}
+
+a {
+	text-decoration: none
+}
+
+img {
+	display: block
+}
+
+.vmovier-container {
+	text-align: left;
+	-webkit-font-smoothing: antialiased;
+	font-smoothing: antialiased
+}
+
+.video {
+	position: relative
+}
+
+.video .video-face {
+	position: absolute;
+	z-index: 100;
+	width: 100%
+}
+
+.video .video-face img {
+	width: 100%
+}
+
+.video .video-face .play-btn {
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -30px;
+	margin-top: -30px;
+	background-image: url("https://www.vmovier.com/Public/Home/images/vmovier-play-btn.png?20160727");
+	background-size: 100%
+}
+
+.video .video-face .play-btn:active {
+	background-image: url("https://cs.vmovier.com/Uploads/post/2016-03-18/56ebc1f12dfca.png")
+}
+
+.video .video-face .video-duration {
+	-webkit-transform: translate(-50%);
+	transform: translate(-50%);
+	position: absolute;
+    bottom: 2px;
+    right: 0;
+	color: #fff;
+	padding: 2px;
+    padding-left: 6px;
+	font-size: .65rem;
+	letter-spacing: 1px;
+	FILTER: Alpha(Opacity=50);
+	background-color: #000000;
+}
+
+.video video {
+	width: 100%
+}
+
+.open-app {
+	height: 45px;
+	line-height: 45px;
+	font-size: .75rem;
+	color: #fff;
+	background: rgba(0, 0, 0, .8);
+	position: relative;
+	background-size: 100%;
+	background-position: 50%
+}
+
+.open-app:before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .2)
+}
+
+.open-app:after {
+	content: "\203A";
+	font-size: 23px;
+	position: absolute;
+	top: -2px;
+	padding-left: 5px
+}
+
+.open-app span {
+	position: relative;
+	z-index: 10
+}
+
+.art-msg .art-title {
+	font-size: 0.88rem;
+	line-height: 1.5;
+	margin: 1.11rem .83rem 0rem
+}
+
+.art-msg .art-sub-title,
+.art-msg .art-title {
+	font-weight: blod;
+	color: #333
+}
+
+.art-msg .art-intro {
+	width: 70%;
+	margin: 30px auto;
+	position: relative;
+	color: #999;
+	font-size: .72rem
+}
+
+.art-msg .art-intro span {
+	display: inline-block;
+	position: relative
+}
+
+.art-msg .art-intro span:after,
+.art-msg .art-intro span:before {
+	content: "";
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	position: absolute
+}
+
+.art-msg .art-intro span:before {
+	border-left: 1px solid #999;
+	border-top: 1px solid #999;
+	top: -6px;
+	left: -15px
+}
+
+.art-msg .art-intro span:after {
+	border-right: 1px solid #999;
+	border-bottom: 1px solid #999;
+	right: -14px;
+	bottom: -6px
+}
+
+.art-msg .art-catename span {
+	padding-left: 0.8rem;
+	margin-top: 5px;
+	background: #eee;
+	font-size: .60rem;
+	color: #A8A8A8;
+	border-radius: 20px;
+	display: inline-block
+}
+
+.art-msg .art-catename .new-cate {
+	background: none
+}
+
+.art-msg .art-catename .new-cate em {
+	font-style: normal
+}
+
+.art-html {
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+	text-align: left;
+	line-height: 1.8;
+	margin-bottom: 0;
+    padding: 10px 19px 0;
+    padding-right: 2.5rem;
+	font-size: .75rem;
+	overflow: hidden;
+	color: #333
+}
+
+.hiddenHeight {
+	height: 3rem
+}
+
+.art-html p {
+	margin: 0 auto 20px
+}
+
+.art-html .video .video-face img {
+	margin-left: 0
+}
+
+.art-html img {
+	width: 110%;
+	margin-left: -15px;
+	height: auto
+}
+
+.art-html a {
+	color: #26adff
+}
+
+.art-html .video {
+	overflow: hidden
+}
+
+.art-html video {
+	margin-bottom: 20px;
+	max-height: 55.95vw
+}
+
+.art-author:after,
+.art-author:before {
+	content: "";
+	display: block;
+	border: none;
+	border-bottom: 1px solid hsla(0, 0%, 63%, .1)
+}
+
+.art-author .art-author-content {
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+	display: -moz-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	min-height: 5rem;
+	position: relative
+}
+
+.art-author .art-author-content .art-author-img {
+	border-radius: 50%;
+	height: 2.77rem;
+	margin-left: 15px;
+	border: 1px solid hsla(0, 0%, 60%, .2)
+}
+
+.art-author .art-author-content .art-author-info {
+	text-align: left;
+	margin-left: 1rem
+}
+
+.art-author .art-author-content .art-author-info .art-author-name {
+	font-size: .88rem;
+	color: #000
+}
+
+.art-author .art-author-content .art-author-info .art-author-intro {
+	color: #a1a1a1;
+	margin-top: 4px;
+	font-size: .66rem;
+	line-height: 1.6;
+	letter-spacing: 1px;
+	padding-right: 15px
+}
+
+.art-author i {
+	width: 10px;
+	height: 18px;
+	background: url("https://cs.vmovier.com/Uploads/Activity/2016-06-01/574e844c0cc70.png");
+	background-size: 100%;
+	display: inline-block;
+	position: absolute;
+	right: 0;
+	top: 36px;
+	margin-right: 15px
+}
+
+.art-editor {
+	margin-top: 40px;
+	font-size: .8rem;
+	color: #333
+}
+
+.art-editor span {
+	font-size: .6rem;
+	color: #a1a1a1
+}
+
+.art-end {
+	margin: 53px 0 39px;
+	color: #a1a1a1
+}
+
+.art-end i {
+	border: none;
+	border-bottom: 1px solid hsla(0, 0%, 63%, .4);
+	display: inline-block;
+	width: 49px;
+	margin: 0 5px
+}
+
+.art-end i,
+.art-end span {
+	vertical-align: middle
+}
+
+.app-down-new-wrap {
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+	display: -moz-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	height: 90px;
+	margin-top: 1.5rem;
+	background: #ffffff;
+	text-align: left;
+	padding: 0 15px;
+	border-top: 0.1rem solid #dadada;
+	box-shadow: 0px 6px 5px #888888;
+}
+
+.app-down-new-wrap:active {
+	background: #f0f0f0
+}
+
+.app-down-new-wrap .app-left {
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+	display: -moz-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center
+}
+
+.app-down-new-wrap .app-left .app-logo {
+	border-radius: 10px;
+	width: 60px;
+	height: 60px;
+	background-image: url("../images/app_logo.png");
+	background-size: contain;
+	display: inline-block
+}
+
+.app-down-new-wrap .app-left .app-tip {
+	font-size: 13px;
+	color: #000;
+	line-height: 1.6;
+	margin-left: 10px
+}
+
+.app-down-new-wrap .app-left .app-tip span {
+	font-size: 1rem
+}
+
+.app-down-new-wrap .app-down-new-btn {
+	border: 1px solid #0d0d0d;
+	background: transparent;
+	padding: 0 10px;
+	height: 34px;
+	line-height: 35px;
+	font-size: 14px;
+	border-radius: 5px;
+	color: #0d0d0d
+}
+
+.see-all-comment {
+	text-align: center;
+	margin-top: 25px
+}
+
+.see-all-comment span {
+	background: #f5f5f5;
+	padding: 15px 30px;
+	border-radius: 30px;
+	font-size: .8rem;
+	color: #26adff
+}
+
+.see-all-comment span:active {
+	background: #f1f1f1
+}
+
+.see-all-comment span i {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url("https://cs.vmovier.com/Uploads/post/2016-04-06/5704b13b1d9b9.png");
+	background-size: 100%;
+	position: relative;
+	top: 5px;
+	margin-right: 6px
+}
+
+.wx-warp {
+	text-align: center;
+	margin-top: 1rem;
+	padding-bottom: 40px
+}
+
+.wx-warp img {
+	width: 100%
+}
+
+.share-cover {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background: rgba(0, 0, 0, .9);
+	left: 0;
+	top: 0;
+	color: #fff;
+	font-size: .85em;
+	opacity: 0;
+	-webkit-backface-visibility: hidden;
+	transition: opacity .5s;
+	-webkit-transition: opacity .5s;
+	z-index: 9999;
+	display: none
+}
+
+.fadeIn {
+	opacity: 1!important
+}
+
+.share-cover .share-arrow {
+	text-align: right
+}
+
+.share-cover em {
+	background: url("https://cs.vmovier.com/Uploads/post/2016-04-07/5706420f04327.png") no-repeat;
+	display: inline-block;
+	width: 18px;
+	height: 10px;
+	background-size: 100%;
+	margin: 20px 10px 10px;
+	animation: arrowAnimate 2s infinite;
+	-webkit-animation: arrowAnimate 2s infinite
+}
+
+.share-cover .share-text {
+	float: right;
+	margin: 0 10px
+}
+
+.share-cover .share-text i {
+	opacity: 0;
+	transition: all .5s;
+	-webkit-transition: all .5s;
+	font-style: normal
+}
+
+.fixed-banner {
+	position: fixed;
+	bottom: 0;
+	z-index: 100000;
+	width: 100%;
+	max-width: 600px
+}
+
+.fixed-banner img {
+	width: 100%;
+	display: block;
+	max-height: 72px;
+	max-width: 414px;
+	margin: 0 auto
+}
+
+.album-banner {
+	width: 100%
+}
+
+.weixin-wrap {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 10000;
+	display: none
+}
+
+.weixin-cover {
+	height: 97px;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, .8);
+	color: #fff;
+	font-size: 16px
+}
+
+.weixin-cover img {
+	position: absolute;
+	width: 40px;
+	right: 8px;
+	top: -8px
+}
+
+.weixin-cover .text {
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translate(-10%, -50%);
+	-webkit-transform: translate(-10%, -50%)
+}
+
+.weixin-cover .small-text {
+	font-size: 13px;
+	color: #a1a1a1;
+	display: inline-block;
+	padding-top: 10px
+}
+
+.more-intro1 {
+	text-align: left;
+	margin: 20px;
+	margin-top:-1.4rem;
+    margin-left: 103%;
+}
+
+.more-intro {
+	text-align: left;
+	margin: 20px;
+	margin-top:-1.4rem;
+    margin-left: 90%;
+}
+
+.more-intro span {
+	font-size: .8rem;
+	vertical-align: middle;
+	padding-right: 5px;
+	color: #999
+}
+
+.more-intro img {
+	width: 12px;
+	vertical-align: middle;
+	display: inline-block
+}
+
+.art-html p.short {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	position: relative
+}
+
+.author-face-wrap {
+	position: relative
+}
+
+.v-3,
+.v-4 {
+	width: 12px;
+	height: 12px;
+	position: absolute;
+	bottom: 2px;
+	right: 0
+}
+
+.v-3 {
+	background: url("http://www.xinpianchang.com/public/images/yellow-v.png") no-repeat 50%;
+	background-size: 100%
+}
+
+.v-4 {
+	background: url("http://www.xinpianchang.com/public/images/blue-v.png") no-repeat 50%;
+	background-size: 100%
+}
+
+.com-img .v-3,
+.com-img .v-4 {
+	width: .55556rem;
+	height: .55556rem;
+	bottom: -5px;
+	right: 5px
+}
+
+@-webkit-keyframes arrowAnimate {
+	0% {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+		transform: translateY(0)
+	}
+	to {
+		opacity: .1;
+		-webkit-transform: translateY(-10px);
+		transform: translateY(-10px)
+	}
+}
+
+@keyframes arrowAnimate {
+	0% {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+		transform: translateY(0)
+	}
+	to {
+		opacity: .1;
+		-webkit-transform: translateY(-10px);
+		transform: translateY(-10px)
+	}
+}
+
+* {
+	margin: 0;
+	padding: 0
+}
+
+body {
+	font-family: Microsoft YaHei, \\5FAE\8F6F\96C5\9ED1, PingFang SC, STHeiti, sans-serif;
+	font-family: Open Sans, Arial, Hiragino Sans GB, Microsoft YaHei, \\5FAE\8F6F\96C5\9ED1, STHeiti, WenQuanYi Micro Hei, SimSun, sans-serif;
+	word-break: break-all;
+	word-wrap: break-word;
+	-webkit-tap-highlight-color: rgba(240, 240, 240, 0);
+	-moz-tap-highlight-color: hsla(0, 0%, 94%, 0);
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-user-select: none;
+	-webkit-overflow-scrolling: touch;
+	max-width: 600px;
+	overflow-x: hidden;
+	margin: 0 auto
+}
+
+a {
+	text-decoration: none
+}
+
+img {
+	display: block
+}
+
+ul {
+	list-style-type: none
+}
+
+.comment-new-warp {
+	margin: 30px 15px;
+	text-align: left
+}
+
+.comment-new-warp .com-list .com-img .full {
+	width: 35px;
+	height: 35px;
+	position: relative;
+	top: 4px
+}
+
+.comment-new-warp .com-text-wx {
+	margin-top: 0
+}
+
+.comment-new-warp .com-text-wx .title {
+	margin-bottom: -2px
+}
+
+.comment-new-warp .com-text-wx .title span {
+	font-size: .8rem
+}
+
+.comment-new-warp .com-text-wx .time {
+	color: #a8a8a8!important;
+	font-size: 12px!important
+}
+
+.comment-new-warp .com-text-wx .intro {
+	font-size: .79rem;
+	color: #333
+}
+
+.comment-new-warp .com-list li {
+	border-bottom: 1px solid #f0f0f0
+}
+
+.comment-new-warp .com-list .com-img {
+	width: 40px;
+	height: 40px;
+	float: left
+}
+
+.comment-new-warp .com-list .com-img .full {
+	border-radius: 50%
+}
+
+.comment-new-warp .com-text-wx {
+	margin-left: 50px;
+	overflow-x: hidden;
+	margin-top: 10px
+}
+
+.comment-new-warp .com-text-wx .time {
+	color: #c8c8c8
+}
+
+.comment-new-warp .com-text-wx .title {
+	display: inline-block;
+	vertical-align: middle;
+	font-weight: 400;
+	margin-bottom: 4px;
+	color: #c8c8c8
+}
+
+.comment-new-warp .com-text-wx .title span {
+	color: #666
+}
+
+.comment-new-warp .com-text-wx .ope a {
+	margin-left: 20px;
+	color: #c8c8c8
+}
+
+.comment-new-warp .com-text-wx .ope a b {
+	font-weight: 400
+}
+
+.comment-new-warp .com-text-wx .intro {
+	margin-bottom: 5px;
+	margin-top: 5px;
+	line-height: 1.8
+}
+
+.comment-new-warp .com-text-wx .intro img {
+	vertical-align: middle;
+	margin-bottom: 5px
+}
+
+.comment-new-warp .comment-new-warp .plus-v-p-14,
+.comment-new-warp .plus-v-c-14 {
+	display: inline-block;
+	zoom: 1;
+	vertical-align: top;
+	width: 15px;
+	height: 13px;
+	margin-left: 2px;
+	margin-top: 5px;
+	background-size: 100%
+}
+
+.comment-new-warp .wolai-comment {
+	background: #00a2ff;
+	color: #fff;
+	border-radius: 5px;
+	padding: 10px;
+	text-align: center
+}
+
+.comment-new-warp .con-text-wx .ope a:last-child {
+	margin-left: 0
+}
+
+.comment-new-warp .com-edit {
+	border-radius: 4px;
+	border: 1px solid rgba(0, 0, 0, .5);
+	text-align: center;
+	margin: 1.66rem 0;
+	font-size: .77rem;
+	line-height: 2.44rem;
+	height: 2.44rem
+}
+
+.comment-new-warp .com-ground {
+	position: fixed;
+	left: 0;
+	top: 0;
+	background: rgba(0, 0, 0, .75);
+	width: 100%;
+	text-align: center;
+	z-index: 1000
+}
+
+.comment-new-warp .com-ground .ground-action {
+	border-radius: 5px;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+	position: absolute;
+	top: 50%;
+	left: 0;
+	width: 90%;
+	margin-left: 5%;
+	overflow: hidden
+}
+
+.comment-new-warp .com-ground .ground-action textarea {
+	border: none;
+	width: 100%;
+	height: 8.88rem;
+	resize: none;
+	box-sizing: border-box;
+	padding: 10px;
+	border-bottom: 1px solid #f0f0f0;
+	display: block;
+	border-radius: 0;
+	font-size: 16px;
+	-webkit-tap-highlight-color: rgba(240, 240, 240, 0);
+	-moz-tap-highlight-color: hsla(0, 0%, 94%, 0);
+	outline: none;
+	color: #000
+}
+
+.comment-new-warp .com-ground .ground-action .send {
+	background: #fff;
+	line-height: 2.44rem;
+	height: 2.44rem;
+	color: #999;
+	font-size: .77rem
+}
+
+.comment-new-warp .com-ground .ground-action .color {
+	background: #26adff;
+	color: #fff
+}
+
+.comment-new-warp .comment-title {
+	font-size: .9rem;
+	font-weight: 700;
+	margin-left: 0
+}
+
+.comment-new-warp .com-text-wx .ope {
+	padding-bottom: 12px;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between
+}
+
+.comment-new-warp .com-text-wx .ope,
+.comment-new-warp .com-text-wx .ope .approve {
+	display: -webkit-box;
+	display: -moz-box;
+	display: box;
+	display: -moz-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center
+}
+
+.comment-new-warp .com-text-wx .ope .approve {
+	font-size: 14px;
+	color: #a8a8a8
+}
+
+.comment-new-warp .com-text-wx .ope .approve i {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background-size: 100%;
+	vertical-align: middle
+}
+
+.comment-new-warp .com-text-wx .ope .approve .approve-iocn {
+	background-image: url("https://cs.vmovier.com/Uploads/Activity/2017-02-20/58aa8596c8cd1.png");
+	background-image: url("https://cs.vmovier.com/Uploads/Activity/2017-02-20/58aa5aec2d2cc.png")
+}
+
+.comment-new-warp .com-text-wx .ope .approve .approved-iocn {
+	background-image: url("https://cs.vmovier.com/Uploads/Activity/2017-02-20/58aa8596c8cd1.png")
+}
+
+.comment-new-warp .com-success {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	border-radius: 4px;
+	padding: 10px 0;
+	width: 80%;
+	text-align: center;
+	background: rgba(0, 0, 0, .55);
+	color: #fff;
+	font-size: .77rem
+}
+
+.hot-list {
+	text-align: left
+}
+
+.hot-list .hot-list-item {
+	position: relative;
+	font-size: 1em;
+	min-height: 60px;
+	padding: 10px 15px
+}
+
+.hot-list .hot-list-item .dur {
+	position: absolute;
+	right: 0;
+	bottom: 4px;
+	color: #fff;
+	padding: 2px;
+	font-size: 12px;
+	background: rgba(0, 0, 0, .3)
+}
+
+.hot-list .hot-list-item .tuijian-count-box {
+	position: absolute;
+	font-size: 14px;
+	left: 33%;
+	bottom: 2px
+}
+
+.hot-list .hot-list-item .tuijian-img-box {
+	display: inline-block;
+	width: 33%;
+	margin-right: 2%;
+	position: relative;
+	vertical-align: top
+}
+
+.hot-list .hot-list-item .item-img {
+	width: 100%
+}
+
+.hot-list .hot-list-item .descript {
+	width: 59%;
+	margin-bottom: 20px;
+	vertical-align: middle;
+	line-height: 1.3em;
+	position: absolute;
+	top: 52%;
+	left: 38%;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	font-size: .8rem;
+	color: #123;
+	margin: 0;
+	padding-top: 5px
+}
+
+.new-rating {
+	margin: 15px 0 20px;
+	color: #000
+}
+
+.new-rating em {
+	width: 15px;
+	height: 15px;
+	display: inline-block;
+	background-size: 100%;
+	margin: 0 2px;
+	text-align: left
+}
+
+.new-rating .half-bg {
+	background-image: url("https://www.vmovier.com/Public/Home/images/star_big_grey.png?20150120")
+}
+
+.new-rating em i {
+	height: 101%;
+	width: 101%;
+	display: block;
+	background: url("https://www.vmovier.com/Public/Home/images/star_big_yellow.png?20151218");
+	background-size: 100%
+}
+
+.new-rating .half {
+	width: 50%;
+	background-size: auto 100%;
+	background-position: 0
+}
+
+.new-rating .rating-holder span {
+	display: inline-block;
+	*display: inline;
+	zoom: 1;
+	margin: 0;
+	padding: 0;
+	background-image: url("https://www.vmovier.com/Public/Home/images/stars-yes-new.png");
+	height: 20px;
+	vertical-align: top;
+	background-size: 145px 20px
+}
+
+.new-rating span.num {
+	margin-right: 0;
+	margin-left: 7px;
+	width: auto;
+	display: inline-block;
+	*display: inline;
+	zoom: 1;
+	vertical-align: 0;
+	font-size: 1.1rem;
+	color: #333
+}
+
+.hot-rating {
+	margin: 5px 0 0;
+	color: #a4a4a4
+}
+
+.hot-rating em {
+	height: 10px;
+	width: 10px
+}
+
+.hot-rating span.num {
+	font-size: 13px;
+	color: #a4a4a4
+}
+
+.hot-rating .hot-share-count {
+	margin-left: 20px;
+	background: url("https://cs.vmovier.com/Uploads/Activity/2016-06-01/574e80eb900b4.png") no-repeat left 0;
+	background-size: .9rem;
+	padding-left: 21px;
+	font-size: 13px
+}
+
+.item-title {
+	font-size: .9rem;
+	font-weight: 700;
+	text-align: left;
+	margin-left: 15px
+}
+
+.go-down {
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .4);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100000000000000000;
+	transition: .3s;
+	-webkit-transition: .3s
+}
+
+.go-down-content {
+	width: 80%;
+	margin: 0 auto;
+	border-radius: 15px;
+	position: relative;
+	text-align: center;
+	top: 50%;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	overflow: hidden
+}
+
+.go-down-content .go-down-logo {
+	width: 100%;
+	display: block
+}
+
+.img-wrap {
+	position: relative;
+	width: 100%
+}
+
+.go-down-content .download-v {
+	color: #fff;
+	font-weight: lighter;
+	font-size: 18px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	width: 100%
+}
+
+.go-down-content .download-v span {
+	font-size: 14px;
+	display: inline-block;
+	padding-top: 10px
+}
+
+.go-down-content .download-vmovier {
+	display: inline-block;
+	padding: 15px 0;
+	background: #fff;
+	color: #32affe;
+	font-size: 15px;
+	width: 100%
+}
+
+.go-down-content div:active {
+	color: #237ab1
+}
+
+.go-down-cancel {
+	position: absolute;
+	right: -1px;
+	top: 1px;
+	display: block;
+	width: 10px;
+	height: 10px;
+	background: url("https://cs.vmovier.com/Uploads/Activity/2016-05-06/572c87a2c295e.png") no-repeat;
+	background-size: 40%;
+	background-position: 50%;
+	padding: 15px
+}
+
+.go-down-cancel:active {
+	background-image: url("https://cs.vmovier.com/Uploads/Activity/2016-05-06/572c8874e1710.png")
+}
+
+.go-down-cancel img {
+	width: 100%
+}
+
+body:0;
+padding:0;
+color:#000;
+word-break:break-all;
+word-wrap:break-word;
+position:relative;
+font-family:Helvetica,
+Arial,
+sans-serif;
+font-size:18px;
+max-width:600px;
+margin:0 auto;
+tap-highlight-color:hsla(0,
+0%,
+94%,
+0);
+font-family:Open Sans,
+Arial,
+Hiragino Sans GB,
+Microsoft YaHei,
+\\5FAE\8F6F\96C5\9ED1,
+STHeiti,
+WenQuanYi Micro Hei,
+SimSun,
+sans-serif;
+-webkit-tap-highlight-color:rgba(240,
+240,
+240,
+0);
+-moz-tap-highlight-color:hsla(0,
+0%,
+94%,
+0);
+user-select:none;
+-webkit-user-select:none;
+-webkit-overflow-scrolling:touch;
+* {
+	margin: 0;
+	padding: 0
+}
+
+body {
+	font-family: Microsoft YaHei, \\5FAE\8F6F\96C5\9ED1, PingFang SC, STHeiti, sans-serif;
+	font-family: Open Sans, Arial, Hiragino Sans GB, Microsoft YaHei, \\5FAE\8F6F\96C5\9ED1, STHeiti, WenQuanYi Micro Hei, SimSun, sans-serif;
+	word-break: break-all;
+	word-wrap: break-word;
+	-webkit-tap-highlight-color: rgba(240, 240, 240, 0);
+	-moz-tap-highlight-color: hsla(0, 0%, 94%, 0);
+	user-select: none;
+	-webkit-user-select: none;
+	-webkit-overflow-scrolling: touch;
+	max-width: 600px;
+	overflow-x: hidden;
+	margin: 0 auto
+}
+
+a {
+	text-decoration: none
+}
+
+img {
+	display: block
+}

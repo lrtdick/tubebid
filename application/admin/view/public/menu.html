@@ -1,0 +1,191 @@
+<ul id="main-menu" class="main-menu">
+    <!-- add class "multiple-expanded" to allow multiple submenus to open -->
+    <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+
+    <!--首页-->
+    <li {if condition="($Request.controller == 'Index') AND ($Request.action == 'index')"}class="active"{/if}>
+    <a href="/admin/index/index">
+        <i class="fa-institution"></i>
+        <span class="title">主页</span>
+    </a>
+    </li>
+
+    <!--视频管理-->
+    <li {if condition="($Request.controller == 'Video') || ($Request.controller == 'Picture') || ($Request.controller == 'Article')"}class="opened active"{/if}>
+    <a href="/admin/video/index">
+        <i class="fa-video-camera"></i>
+        <span class="title">资源管理</span>
+    </a>
+    <ul>
+        <li {if condition="($Request.controller == 'Video') AND ($Request.action == 'index' OR $Request.action == 'add' OR $Request.action == 'edit')"}class="active"{/if}>
+            <a href="/admin/video/index">
+                <span class="title">视频列表</span>
+            </a>
+        </li>
+        <li {if condition="($Request.controller == 'Markdown') AND ($Request.action == 'pictures' OR $Request.action == 'add' OR $Request.action == 'edit')"}class="active"{/if}>
+        <a href="/admin/markdown/pictures">
+            <span class="title">图集列表</span>
+        </a>
+        </li>
+
+        <li {if condition="($Request.controller == 'Markdown') AND ($Request.action == 'articles' OR $Request.action == 'add' OR $Request.action == 'edit')"}class="active"{/if}>
+        <a href="/admin/markdown/articles">
+            <span class="title">图文markdown</span>
+        </a>
+        </li>
+
+        <li {if condition="($Request.controller == 'Article') AND ($Request.action == 'index' OR $Request.action == 'add' OR $Request.action == 'edit')"}class="active"{/if}>
+        <a href="/admin/article/index">
+            <span class="title">图文列表</span>
+        </a>
+        </li>
+        <li {if condition="($Request.controller == 'Video') AND ($Request.action == 'cate')"}class="active"{/if}>
+        <a href="/admin/video/cate">
+            <span class="title">分类管理</span>
+        </a>
+        </li>
+        <li {if condition="($Request.controller == 'Video') AND ($Request.action == 'tag')"}class="active"{/if}>
+        <a href="/admin/video/tag">
+            <span class="title">标签管理</span>
+        </a>
+        </li>
+        <li {if condition="($Request.controller == 'Comments') AND ($Request.action == 'index')"}class="active"{/if}>
+        <a href="/admin/comments/index">
+            <span class="title">评论管理</span>
+        </a>
+        </li>
+    </ul>
+    </li>
+    <!--广告管理-->
+    <li {if condition="($Request.controller == 'Advertising')"}class="opened active"{/if}>
+    <a href="/admin/advertising/index">
+        <i class="fa-users"></i>
+        <span class="title">广告管理</span>
+    </a>
+    <ul>
+        <li {if condition="($Request.controller == 'Advertising') AND ($Request.action == 'index' OR $Request.action == 'add' OR $Request.action == 'edit')"}class="active"{/if}>
+        <a href="/admin/advertising/index">
+            <span class="title">广告列表</span>
+        </a>
+        </li>
+    </ul>
+    </li>
+    <!--关键词管理-->
+    <li {if condition="($Request.controller == 'Keywords')"}class="opened active"{/if}>
+    <a href="/admin/keywords/index">
+        <i class="fa-users"></i>
+        <span class="title">关键词管理</span>
+    </a>
+    <ul>
+        <li {if condition="($Request.controller == 'Keywords') AND ($Request.action == 'index' OR $Request.action == 'add' OR $Request.action == 'edit')"}class="active"{/if}>
+        <a href="/admin/keywords/index">
+            <span class="title">关键词列表</span>
+        </a>
+        </li>
+    </ul>
+    </li>
+    <!--专家管理-->
+    <li {if condition="($Request.controller == 'Author')"}class="opened active"{/if}>
+    <a href="/admin/author/index">
+        <i class="fa-users"></i>
+        <span class="title">作者管理</span>
+    </a>
+    <ul>
+        <li {if condition="($Request.controller == 'Author') AND ($Request.action == 'index' OR $Request.action == 'add' OR $Request.action == 'edit')"}class="active"{/if}>
+        <a href="/admin/author/index">
+            <span class="title">作者列表</span>
+        </a>
+        </li>
+    </ul>
+    </li>
+
+    <!--用户管理-->
+    <li {if condition="($Request.controller == 'User')"}class="opened active"{/if}>
+    <a href="/admin/user/index">
+        <i class="fa-users"></i>
+        <span class="title">用户管理</span>
+    </a>
+    <ul>
+        <li {if condition="($Request.controller == 'User') AND ($Request.action == 'index' OR $Request.action == 'add' OR $Request.action == 'edit' OR $Request.action == 'history' OR $Request.action == 'love')"}class="active"{/if}>
+            <a href="/admin/user/index">
+                <span class="title">用户列表</span>
+            </a>
+        </li>
+    </ul>
+    </li>
+
+   <!-- 财务管理-->
+    <li {if condition="($Request.controller == 'Finance')"}class="opened active"{/if}>
+    <a href="/admin/finanace/order">
+        <i class="fa-rmb"></i>
+        <span class="title">订单管理</span>
+    </a>
+    <ul>
+        <li {if condition="($Request.controller == 'Finance') AND ($Request.action == 'order')"}class="active"{/if}>
+            <a href="/admin/finance/order">
+                <span class="title">用户消费</span>
+            </a>
+        </li>
+    </ul>
+    </li>
+
+    <!--系统设置-->
+    <li {if condition="($Request.controller == 'System')"}class="opened active"{/if}>
+    <a href="/admin/System/index">
+        <i class="fa-gear"></i>
+        <span class="title">系统设置</span>
+    </a>
+    <ul>
+        <li {if condition="($Request.controller == 'System') AND ($Request.action == 'front')"}class="active"{/if}>
+        <a href="/admin/system/front">
+            <span class="title">前端设置</span>
+        </a>
+        </li>
+        <!--<li {if condition="($Request.controller == 'System') AND ($Request.action == 'banner')"}class="active"{/if}>-->
+            <!--<a href="/admin/system/banner">-->
+                <!--<span class="title">轮播图设置</span>-->
+            <!--</a>-->
+        <!--</li>-->
+
+        <!--<li {if condition="($Request.controller == 'System') AND ($Request.action == 'share')"}class="active"{/if}>-->
+        <!--<a href="/admin/system/share">-->
+            <!--<span class="title">分享设置</span>-->
+        <!--</a>-->
+        <!--</li>-->
+
+        <!--<li {if condition="($Request.controller == 'System') AND ($Request.action == 'push')"}class="active"{/if}>-->
+        <!--<a href="/admin/system/push">-->
+            <!--<span class="title">极光推送设置</span>-->
+        <!--</a>-->
+        <!--</li>-->
+
+        <!--<li {if condition="($Request.controller == 'System') AND ($Request.action == 'state')"}class="opened active"{/if}>-->
+        <!--<a href="#">-->
+            <!--<span class="title">声明设置</span>-->
+        <!--</a>-->
+        <!--<ul>-->
+            <!--<li {if condition="($Request.controller == 'System') AND ($Request.action == 'state') AND ($Think.get.type == 'video')"}class="active"{/if}>-->
+            <!--<a href="/admin/system/state?type=video">-->
+                <!--<span class="title">视频功能</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li {if condition="($Request.controller == 'System') AND ($Request.action == 'state') AND ($Think.get.type == 'member')"}class="active"{/if}>-->
+            <!--<a href="/admin/system/state?type=member">-->
+                <!--<span class="title">用户协议</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li {if condition="($Request.controller == 'System') AND ($Request.action == 'state') AND ($Think.get.type == 'copyright')"}class="active"{/if}>-->
+            <!--<a href="/admin/system/state?type=copyright">-->
+                <!--<span class="title">版权声明</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li {if condition="($Request.controller == 'System') AND ($Request.action == 'state') AND ($Think.get.type == 'privacy')"}class="active"{/if}>-->
+            <!--<a href="/admin/system/state?type=privacy">-->
+                <!--<span class="title">隐私政策</span>-->
+            <!--</a>-->
+            <!--</li>-->
+        <!--</ul>-->
+        <!--</li>-->
+    </ul>
+    </li>
+</ul>
