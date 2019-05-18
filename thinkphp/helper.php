@@ -654,11 +654,16 @@ if (!function_exists('calcK')) {
     function calcK($num)
     {
 
-        $base = 1024;
+        $base = 1000;
         $v=$num/$base;
         $i = floor($v);
         if($i>0){
             $n=$i.'K+';
+            $m=floor($num/$base/$base);
+            if($m>0){
+                $n= $m.'M+';
+            }
+
             return $n;
         }
         return $num;

@@ -144,13 +144,14 @@ class Markdown extends Admin
         }
 
         $viewData = [
-            'type' => $where['type'],
+
             'lists' => $data,
             'cates' => $cate_list,
             'channels' => $channel_list,
             'tag_list' => $tag_list,
             'page' => $page,
-            'total' => $total
+            'total' => $total ,
+            'type' => $where['type'],
         ];
 //        dd($viewData);
         $this->assign($viewData);

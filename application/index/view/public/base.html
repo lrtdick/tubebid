@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Xenon Boostrap Admin Panel" />
+    <meta name="author" content="" />
+
+    <title>Sketching - Admin</title>
+
+    <link rel="stylesheet" href="/static/assets/css/fonts/linecons/css/linecons.css">
+    <link rel="stylesheet" href="/static/assets/css/fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/assets/css/xenon-core.css">
+    <link rel="stylesheet" href="/static/assets/css/xenon-forms.css">
+    <link rel="stylesheet" href="/static/assets/css/xenon-components.css">
+    <link rel="stylesheet" href="/static/assets/css/xenon-skins.css">
+    <link rel="stylesheet" href="/static/assets/css/custom.css">
+    <link rel="stylesheet" href="/static/assets/css/toastr.css">
+    <link rel="stylesheet" href="/static/assets/js/dropzone/css/dropzone.css">
+
+    <link rel="stylesheet" href="/static/assets/css/markdown/editor.css" />
+
+
+    <script src="/static/assets/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/assets/js/ueditor/ueditor.config.js"></script>
+    <script src="/static/assets/js/ueditor/ueditor.all.js"></script>
+
+    <script src="/static/assets/js/markdown/jquery.js"></script>
+    <script src="/static/assets/js/markdown/showdown.js"></script>
+    <!--<script src="/static/assets/js/markdown/wmd.js"></script>-->
+    <script src="/static/assets/js/markdown/prettify.js"></script>
+
+
+    <style type="text/css">
+        .yichu{
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        td button{
+            margin-top: 5px;
+        }
+        td a{
+            margin-top: 5px;
+        }
+    </style>
+
+</head>
+<body class="page-body" style="min-width: 878px;">
+<div class="page-loading-overlay">
+    <div class="loader-2"></div>
+</div>
+
+<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+
+    <!-- Add "fixed" class to make the sidebar fixed always to the browser viewport. -->
+    <!-- Adding class "toggle-others" will keep only one menu item open at a time. -->
+    <!-- Adding class "collapsed" collapse sidebar root elements and show only icons. -->
+
+
+            <!-- Right links for user info navbar -->
+
+        </nav>
+
+        {block name="content"}
+
+
+        {/block}
+
+
+
+    </div>
+</div>
+{block name="modal"}
+
+
+{/block}
+<!-- Bottom Scripts -->
+
+<link rel="stylesheet" href="/static/assets/js/select2/select2.css">
+<link rel="stylesheet" href="/static/assets/js/select2/select2-bootstrap.css">
+<link rel="stylesheet" href="/static/assets/js/multiselect/css/multi-select.css">
+
+
+<script src="/static/assets/js/bootstrap.min.js"></script>
+<script src="/static/assets/js/TweenMax.min.js"></script>
+<script src="/static/assets/js/resizeable.js"></script>
+<script src="/static/assets/js/joinable.js"></script>
+<script src="/static/assets/js/xenon-api.js"></script>
+<script src="/static/assets/js/xenon-toggles.js"></script>
+<script src="/static/assets/js/toastr1/toastr.min.js"></script>
+
+<script src="/static/assets/js/select2/select2.js"></script>
+<script src="/static/assets/js/jquery-ui/jquery-ui.min.js"></script>
+<script src="/static/assets/js/selectboxit/jquery.selectBoxIt.min.js"></script>
+<script src="/static/assets/js/tagsinput/bootstrap-tagsinput.min.js"></script>
+<script src="/static/assets/js/typeahead.bundle.js"></script>
+<script src="/static/assets/js/handlebars.min.js"></script>
+<script src="/static/assets/js/multiselect/js/jquery.multi-select.js"></script>
+
+<!-- JavaScripts initializations and stuff -->
+<script src="/static/assets/js/xenon-custom.js"></script>
+<script src="/static/assets/js/clamp/clamp.js"></script>
+<script>
+
+    var width = document.getElementsByTagName('body')[0].offsetWidth;
+    if (width > 1240) {
+        $(".sidebar-menu").removeClass("collapsed");
+        console.log(width)
+    } else {
+        $(".sidebar-menu").addClass("collapsed");
+        console.log(width)
+    }
+
+    $("#CheckAll").bind("click",function(){
+          $("input[name='ids[]']").prop("checked",this.checked);
+    });
+
+    function error(msg) {
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr.error(msg);
+    }
+    function success(msg) {
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        toastr.success(msg);
+    }
+
+    //图集单张图片移除
+    $(document).on('click',".picture-trash",function(){
+        var parent = $(this).parent().parent();
+        parent.remove();
+        // console.log(parent)
+        // console.log(parent.siblings());
+        return false;
+    })
+
+    jQuery(document).ready(function($)
+    {
+        $("#s2example-1").select2({
+            placeholder: '选择作者...',
+            allowClear: true
+        }).on('select2-open', function()
+        {
+            // Adding Custom Scrollbar
+            $(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+        });
+        $("#s2example-2").select2({
+            placeholder: '选择标签...',
+            allowClear: true
+        }).on('select2-open', function()
+        {
+            // Adding Custom Scrollbar
+            $(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+            console.log($(this).data('select2'));
+        });
+
+        $("#s2example-3").select2({
+            placeholder: '选择分类',
+            allowClear: true
+        }).on('select2-open', function()
+        {
+            // Adding Custom Scrollbar
+            $(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+        });
+
+        $("#s2example-4").select2({
+            placeholder: '选择关键词',
+            allowClear: true
+        }).on('select2-open', function()
+        {
+            // Adding Custom Scrollbar
+            $(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+        });
+
+        $("#s2example-5").select2({
+            placeholder: '选择组件类型',
+            allowClear: true
+        }).on('select2-open', function()
+        {
+            // Adding Custom Scrollbar
+            $(this).data('select2').results.addClass('overflow-hidden').perfectScrollbar();
+        });
+
+    });
+
+    function uploadLog(){
+        $("#upload-log").css("display","none");
+    }
+
+    function trashFile(type){
+        console.log(this);
+        if(type == 'image'){
+            //$("#show_poster_url").css("display","none");
+            $(".image-div").css("display","none");
+            $("#poster_url").val("");
+        }else if(type == 'video'){
+            //$("#show_video_url").css("display","none");
+            $(".video-div").css("display","none");
+            $("#video_url").val("");
+        }
+    }
+
+</script>
+{block name="js"}{/block}
+
+</body>
+</html>

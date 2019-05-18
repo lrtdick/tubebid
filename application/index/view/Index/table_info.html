@@ -1,0 +1,82 @@
+{foreach $lists as $list}
+
+<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 continfobox" id="list-box-64" data-tags="business">
+    <div class="infobox text-center">
+        <div class="flip-container ">
+            <div class="flipper">
+
+                <div class="front">
+                    <figure class="col-lg-5 col-md-5 col-sm-12 col-xs-12 img-circle"><img
+                            alt="The latest deals, news, and firms in venture capital" src="{$list.poster}"/></figure>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 info">
+                        <h3><a href="/venture-capital">{$list.username}</a></h3>
+                        <p>Audiences：{$list.audiences}</p>
+                        <div class="tags"><b>DAILY</b></div>
+                    </div>
+                    <div class="list-subscription-action">
+                        <a data-remote="true" data-disable-with="Opening ..."
+                           class="col-xs-12 btn btn-default btn-susbcr"
+                           href="/lists/venture-capital/subscription_modal">
+                            <i class="fa fa-envelope ico ico-env"></i> Subscribe <img class="ico ico-arrow" src="/assets/web/ico-arrow-gray-ccce20fba87a4b789849696785ba3840e240aaf30233bba4668f82b3309787ae.png" alt="Ico arrow gray"/>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="back">
+                    <figure class="col-lg-5 col-md-5 col-sm-12 col-xs-12 img-circle"><img
+                            alt="The latest deals, news, and firms in venture capital"
+                            src="https://dc8gwjuur0w0x.cloudfront.net/lists/avatar_gifs/000/000/064/small_x2_giphy-2.gif?1475082466"/>
+                    </figure>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-7 info">
+                        <h3><a href="/venture-capital">Inside Venture Capital</a></h3>
+                        <div class="tags"><b>DAILY</b></div>
+                        <p class="orange"><b>SUBSCRIBED!</b></p>
+                    </div>
+                    <div class="col-xs-12 sharevia text-center">
+                        <p>Share via</p>
+                        <a href="#" class="col-xs-2 share tw social-share" data-social-network="twitter"
+                           data-text="I just subscribed to @Inside Venture Capital, and you should too! inside.com/venture-capital"><span
+                                class="fa fa-twitter"></span></a>
+                        <a href="#" class="col-xs-2 share fb social-share" data-social-network="facebook"
+                           data-url="https://inside.com/venture-capital"><span class="fa fa-facebook-f"></span></a>
+                        <a data-remote="true" data-disable-with="Opening ..." class="col-xs-8 share friend"
+                           href="/lists/venture-capital/tell_a_friend_modal">Tell a friend</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<tr>
+    <td>
+        <a href="listing/23806-youtube-account-for-sale">
+            <img class="img-circle img-thumb-small-icon-social"
+                 src="{$list.poster}" height="20">{$list.username}</a>
+
+    </td>
+    <td>
+        {if($list.type==1)}
+        <i class="fa fa-instagram"></i>
+        {elseif($list.type==2)}
+        <i class="fa fa-facebook"></i>
+        {elseif($list.type==3)}
+        <i class="fa fa-youtube"></i>
+        {/if}
+    </td>
+    <td class="hidden-xs">
+        {$list.audiences}
+    </td>
+    <td class="hidden-xs">
+        <span>$</span>{$list.price}
+    </td>
+    <td class="hidden-xs">
+        <span class="text-muted">{$list.created_at}</span>
+    </td>
+
+    <input type="text" hidden id='total_page' value="{$total}">
+
+</tr>
+{/foreach}
